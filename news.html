@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- WCAG-FAIL 3.1.1 (A) Language of Page: no lang attribute. -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- WCAG-FAIL 1.4.4 (AA) Resize Text: zoom disabled. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>News &amp; Media — City of Muddville</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="masthead">
+    <div class="shell">
+      <div class="brand">City of Muddville</div>
+      <div class="topnav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="search">
+        <input type="text" id="sitesearch" placeholder="Search">
+        <span class="divbtn" onclick="return false">Search</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell content">
+    <h1>News &amp; Media</h1>
+
+    <!-- WCAG-FAIL 2.3.1 (A) Three Flashes or Below Threshold: flashing alert
+         banner (mitigated — small area, honors prefers-reduced-motion). -->
+    <p><span class="flasher">⚠ Boil-water advisory in effect for the North Ward</span></p>
+
+    <!-- WCAG-FAIL 1.4.2 (A) Audio Control: audio set to autoplay on page load
+         and loop, with no in-page pause/stop/volume control. (Browsers may
+         block autoplay, but the markup requests >3s of auto audio with no
+         control.) -->
+    <audio src="assets/public-notice.mp3" autoplay loop></audio>
+
+    <h2>Mayor's weekly briefing</h2>
+    <!-- WCAG-FAIL 1.2.2 (A) Captions (Prerecorded): <video> has no
+             <track kind="captions">.
+         WCAG-FAIL 1.2.3 (A) Audio Description or Media Alternative: no
+             descriptive track and no text alternative for the video.
+         WCAG-FAIL 1.2.5 (AA) Audio Description (Prerecorded): no audio
+             description track is provided. -->
+    <video src="assets/mayor-briefing.mp4" controls width="480" height="270"></video>
+    <p>Recorded briefing from City Hall. No transcript or captions are provided.</p>
+
+    <h2>Live: Council budget hearing</h2>
+    <!-- WCAG-FAIL 1.2.4 (AA) Captions (Live): a stream presented as live with
+         no captions. (Reusing the same clip as a stand-in for a live feed.) -->
+    <video src="assets/mayor-briefing.mp4" controls width="480" height="270" data-live="true"></video>
+    <p>Streaming now — no live captions available.</p>
+
+    <h2>Public notice (audio)</h2>
+    <!-- WCAG-FAIL 1.2.1 (A) Audio-only and Video-only (Prerecorded): an
+         audio-only recording with no transcript / text alternative. -->
+    <audio src="assets/public-notice.mp3" controls></audio>
+    <p>Audio recording of this week's public notice. No transcript is provided.</p>
+
+    <h2>Around town</h2>
+    <!-- WCAG-FAIL 1.1.1 (A) Non-text Content: informative images with no alt
+         text (and none marked decorative). -->
+    <div class="gallery">
+      <img src="assets/welcome-banner.png">
+      <img src="assets/welcome-banner.png">
+      <img src="assets/welcome-banner.png">
+    </div>
+
+    <h2>Recent stories</h2>
+    <!-- WCAG-FAIL 2.4.4 (A) Link Purpose (In Context): link text does not
+         indicate its destination or purpose. -->
+    <ul>
+      <li>New recycling schedule announced. <a href="news.html">Read more</a></li>
+      <li>Downtown street repaving begins. <a href="news.html">Click here</a></li>
+      <li>Summer pool pass registration is open. <a href="news.html">More</a></li>
+    </ul>
+
+    <!-- WCAG-FAIL 2.5.4 (A) Motion Actuation: the page can be refreshed by
+         physically shaking the device, with no equivalent UI control and no
+         way to disable motion actuation. -->
+    <p><em>Tip: shake your phone to refresh the news feed.</em></p>
+  </div>
+
+  <div class="sitefoot">
+    <div class="shell">
+      City Hall, 100 Market Square, Muddville &nbsp;·&nbsp; (555) 018-2200 &nbsp;·&nbsp;
+      <a href="contact.html">Contact</a> &nbsp;·&nbsp;
+      <a href="about.html">About this site</a>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
+    // WCAG-FAIL 2.5.4 (A) Motion Actuation: respond to device shake only.
+    (function () {
+      var last = 0;
+      window.addEventListener("devicemotion", function (e) {
+        var a = e.accelerationIncludingGravity || {};
+        var mag = Math.abs(a.x || 0) + Math.abs(a.y || 0) + Math.abs(a.z || 0);
+        var now = Date.now();
+        if (mag > 30 && now - last > 1500) { last = now; location.reload(); }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- WCAG-FAIL 3.1.1 (A) Language of Page: no lang attribute. -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- WCAG-FAIL 1.4.4 (AA) Resize Text: zoom disabled. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- WCAG-FAIL 2.4.2 (A) Page Titled: the title is non-descriptive; it does
+       not describe the page's topic or purpose. -->
+  <title>Untitled Document</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="masthead">
+    <div class="shell">
+      <div class="brand">City of Muddville</div>
+      <div class="topnav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="search">
+        <input type="text" id="sitesearch" placeholder="Search">
+        <span class="divbtn" onclick="return false">Search</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell content">
+    <h1>City Services</h1>
+
+    <!-- WCAG-FAIL 1.3.3 (A) Sensory Characteristics: instructions rely only on
+         shape, color, and position ("green", "round", "on the right",
+         "below"). -->
+    <p>
+      To start a new request, click the round green button on the right. To
+      cancel, use the square button below it. Services shown with a green dot
+      are open today.
+    </p>
+
+    <!-- WCAG-FAIL 1.4.1 (A) Use of Color: open/closed status is conveyed by a
+         colored dot alone, with no text equivalent. -->
+    <p>
+      Water billing <span style="color:#3a7d44">●</span>
+      &nbsp; Permits <span style="color:#3a7d44">●</span>
+      &nbsp; Parks office <span style="color:#c62828">●</span>
+    </p>
+
+    <!-- WCAG-FAIL 1.3.1 (A) Info and Relationships: this looks like a heading
+         but is a styled <p>, so it is not programmatically a heading. -->
+    <p class="fakehead">Office hours</p>
+
+    <!-- WCAG-FAIL 1.3.1 (A) Info and Relationships: data table with no header
+         cells — the top row uses <td>, not <th>/scope, so row/column
+         relationships are not conveyed. -->
+    <table border="1" cellpadding="6" cellspacing="0">
+      <tr>
+        <td><strong>Department</strong></td>
+        <td><strong>Monday–Friday</strong></td>
+        <td><strong>Saturday</strong></td>
+      </tr>
+      <tr><td>Water &amp; Utilities</td><td>8:00–16:30</td><td>Closed</td></tr>
+      <tr><td>Permits &amp; Licensing</td><td>9:00–16:00</td><td>9:00–12:00</td></tr>
+      <tr><td>Parks &amp; Recreation</td><td>8:30–17:00</td><td>Closed</td></tr>
+    </table>
+
+    <!-- WCAG-FAIL 1.3.2 (A) Meaningful Sequence: row-reverse makes the visual
+         order (label, then value) differ from the DOM/reading order (value,
+         then label), so the meaning is lost when read in source order. -->
+    <p class="fakehead">Current wait times</p>
+    <div style="display:flex; flex-direction:row-reverse; justify-content:flex-end; gap:8px">
+      <div>Water billing counter</div>
+      <div><strong>about 25 minutes:</strong></div>
+    </div>
+
+    <!-- WCAG-FAIL 1.4.13 (AA) Content on Hover or Focus: the explanation shows
+         on hover only (not keyboard focus), cannot be dismissed without moving
+         the pointer, and the gap means it disappears before it can be
+         hovered. -->
+    <p>
+      Your bill includes a
+      <span class="tooltip" tabindex="0">stormwater fee<span class="tip">A flat
+      monthly charge that funds drainage maintenance. Set by Council each
+      year.</span></span>
+      shown as a separate line item.
+    </p>
+
+    <!-- WCAG-FAIL 1.3.1 (A) Info and Relationships: a table used purely for
+         two-column layout (no tabular data). -->
+    <table cellpadding="10"><tr>
+      <td style="vertical-align:top; width:50%">
+        <p class="fakehead">Pay a bill</p>
+        <p>Pay your water, sewer, or stormwater bill online or by phone.</p>
+      </td>
+      <td style="vertical-align:top; width:50%">
+        <p class="fakehead">Get a permit</p>
+        <p>Apply for building, fence, and sign permits.</p>
+      </td>
+    </tr></table>
+
+    <!-- WCAG-FAIL 2.4.6 (AA) Headings and Labels: a non-descriptive heading
+         that does not describe the section that follows. -->
+    <h2>More</h2>
+    <p>
+      <!-- WCAG-FAIL 2.5.2 (A) Pointer Cancellation: the action fires on the
+           down-event (pointerdown) with no up-event and no way to abort by
+           moving away before release. -->
+      <span class="divbtn" onpointerdown="alert('You have been subscribed to service alerts.')">Subscribe to service alerts</span>
+    </p>
+
+    <!-- WCAG-FAIL 4.1.2 (A) Name, Role, Value: a checkbox built from a <span>.
+         It has no role, no accessible name, and its checked state is a CSS
+         class invisible to assistive technology. -->
+    <p>
+      <span class="divcheck" onclick="this.classList.toggle('on')"></span>
+      Email me a receipt
+    </p>
+
+    <!-- 1.3.4 Orientation demo: in narrow landscape this block is rotated,
+         restricting content to a single orientation. -->
+    <div class="orientation-lock">
+      <!-- WCAG-FAIL 1.3.4 (AA) Orientation: content is locked/rotated in
+           landscape on small screens. -->
+      <p class="fakehead">Filter services</p>
+      <select id="svcfilter" onchange="document.getElementById('svccount').textContent='Showing ' + (this.value||'all') + ' services';">
+        <option value="">All</option>
+        <option value="billing">Billing</option>
+        <option value="permits">Permits</option>
+        <option value="parks">Parks</option>
+      </select>
+      <!-- WCAG-FAIL 4.1.3 (AA) Status Messages: this count updates on filter
+           change but is injected into a plain <span> with no aria-live /
+           role=status, so screen-reader users are not informed. -->
+      <span id="svccount">Showing all services</span>
+    </div>
+
+  </div>
+
+  <div class="sitefoot">
+    <div class="shell">
+      City Hall, 100 Market Square, Muddville &nbsp;·&nbsp; (555) 018-2200 &nbsp;·&nbsp;
+      <a href="contact.html">Contact</a> &nbsp;·&nbsp;
+      <a href="about.html">About this site</a>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+</body>
+</html>

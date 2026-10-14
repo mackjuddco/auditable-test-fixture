@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- WCAG-FAIL 3.1.1 (A) Language of Page: no lang attribute. -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- WCAG-FAIL 1.4.4 (AA) Resize Text: zoom disabled. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>About — City of Muddville</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="masthead">
+    <div class="shell">
+      <div class="brand">City of Muddville</div>
+      <!-- WCAG-FAIL 3.2.3 (AA) Consistent Navigation: the same nav links are
+           presented in a DIFFERENT order here than on every other page
+           (About/Home/News/Services/Contact vs. Home/Services/News/Contact/
+           About). -->
+      <div class="topnav">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <!-- WCAG-FAIL 3.2.4 (AA) Consistent Identification: this is the same
+           search control as on other pages, but it is labeled "Find It" here
+           and "Search" everywhere else. -->
+      <div class="search">
+        <input type="text" id="sitesearch" placeholder="Find It">
+        <span class="divbtn" onclick="return false">Find It</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WCAG-FAIL 4.1.1 (A) Parsing: duplicate id ("col" used twice). -->
+  <div class="shell content" id="col">
+    <h1>About the City of Muddville</h1>
+
+    <p>
+      Incorporated in 1887, the City of Muddville serves a growing community on
+      the banks of the Mudd River. The city operates under a council–manager
+      form of government, with a seven-member council and an elected mayor.
+    </p>
+
+    <h2>Our motto</h2>
+    <!-- WCAG-FAIL 3.1.2 (AA) Language of Parts: this passage is in French but
+         carries no lang attribute, so assistive tech will read it with the
+         page's (already-missing) default language. -->
+    <p>
+      The city seal carries our founding motto:
+      <em>« Toujours en avant, ensemble pour la rivière et la communauté. »</em>
+    </p>
+
+    <h2>Council notice</h2>
+    <!-- WCAG-FAIL 4.1.1 (A) Parsing: improperly nested / overlapping tags. -->
+    <p><strong>Please note: <em>regular council meetings</strong> are held on
+      the second Tuesday of each month.</em></p>
+
+    <!-- WCAG-FAIL 4.1.1 (A) Parsing: second element reusing id="col". -->
+    <div id="col">
+      <h2>Contact the clerk</h2>
+      <p>
+        The City Clerk maintains public records and meeting minutes. Visit the
+        <a href="contact.html">contact page</a> for hours and location.
+      </p>
+      <!-- WCAG-FAIL 4.1.1 (A) Parsing: unclosed list item. -->
+      <ul>
+        <li>Records requests
+        <li>Meeting minutes
+        <li>Public notices
+      </ul>
+    </div>
+
+    <h2>This site</h2>
+    <p>
+      This website is a test fixture built to demonstrate accessibility
+      failures. It is not a real municipality and should not be used for any
+      official purpose.
+    </p>
+  </div>
+
+  <div class="sitefoot">
+    <div class="shell">
+      City Hall, 100 Market Square, Muddville &nbsp;·&nbsp; (555) 018-2200 &nbsp;·&nbsp;
+      <a href="contact.html">Contact</a> &nbsp;·&nbsp;
+      <a href="about.html">About this site</a>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+</body>
+</html>

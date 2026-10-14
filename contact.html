@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!-- WCAG-FAIL 3.1.1 (A) Language of Page: no lang attribute. -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- WCAG-FAIL 1.4.4 (AA) Resize Text: zoom disabled. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Pay a Bill &amp; Contact — City of Muddville</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="masthead">
+    <div class="shell">
+      <div class="brand">City of Muddville</div>
+      <div class="topnav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="search">
+        <input type="text" id="sitesearch" placeholder="Search">
+        <span class="divbtn" onclick="return false">Search</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell content">
+    <h1>Pay your water bill</h1>
+
+    <!-- WCAG-FAIL 2.2.1 (A) Timing Adjustable: a hard session countdown that
+         expires the form, with no way to turn it off, extend it, or adjust
+         it. -->
+    <div class="announcement" style="height:auto; overflow:visible">
+      For your security, you have <span id="countdown">60</span> seconds to
+      complete this payment.
+    </div>
+
+    <!-- WCAG-FAIL 1.4.1 (A) Use of Color: required fields are indicated only
+         by the red color of their text — no asterisk or word "required". -->
+    <p><span class="req-label">Fields in red are required.</span></p>
+
+    <form id="payform" onsubmit="return handleSubmit(event)">
+
+      <!-- WCAG-FAIL 3.3.2 (A) Labels or Instructions: no <label>; the only cue
+           is placeholder text (which disappears on input) and there is no
+           format instruction.
+           WCAG-FAIL 1.3.5 (AA) Identify Input Purpose: no autocomplete tokens
+           on fields that collect the user's own name / email / phone.
+           WCAG-FAIL 2.4.3 (A) Focus Order: tabindex values put the tab order
+           out of the logical reading sequence (3, 1, 4, 2, 5…). -->
+      <p>
+        <span class="req-label">Full name</span><br>
+        <input type="text" id="name" placeholder="Full name" tabindex="3">
+      </p>
+      <p>
+        <span class="req-label">Email</span><br>
+        <input type="email" id="email" placeholder="you@example.com" tabindex="1">
+      </p>
+      <p>
+        Phone<br>
+        <input type="tel" id="phone" placeholder="(555) 555-5555" tabindex="4">
+      </p>
+      <p>
+        <span class="req-label">Water account number</span><br>
+        <input type="text" id="account" placeholder="Account number" tabindex="2">
+      </p>
+      <p>
+        <span class="req-label">Amount (USD)</span><br>
+        <input type="number" id="amount" placeholder="0.00" tabindex="5">
+      </p>
+
+      <!-- WCAG-FAIL 3.2.1 (A) On Focus: merely focusing this field triggers a
+           context change (an alert dialog pops up).
+           WCAG-FAIL 3.2.2 (A) On Input: changing the selection automatically
+           navigates to another page without the user initiating it or being
+           warned. -->
+      <p>
+        Reason for contact<br>
+        <select id="topic"
+                onfocus="alert('Note: billing questions are handled by a different office.')"
+                onchange="if(this.value==='permits'){ window.location='services.html'; }">
+          <option value="">Choose…</option>
+          <option value="billing">Billing question</option>
+          <option value="permits">Permits (opens Services)</option>
+          <option value="other">Other</option>
+        </select>
+      </p>
+
+      <p>
+        Message<br>
+        <textarea id="message" placeholder="How can we help?" rows="4"></textarea>
+      </p>
+
+      <!-- WCAG-FAIL 2.5.3 (A) Label in Name: the visible label is
+           "Submit Request" but the accessible name (aria-label) is "Send", so
+           the accessible name does not contain the visible text.
+           WCAG-FAIL 3.3.4 (AA) Error Prevention (Legal, Financial, Data): this
+           submits a financial payment immediately — no review step, no
+           confirmation, and no ability to undo. -->
+      <p>
+        <button type="submit" class="btn" aria-label="Send">Submit Request</button>
+      </p>
+    </form>
+
+    <!-- WCAG-FAIL 4.1.3 (AA) Status Messages: the submit result is written
+         here into a plain element with no role=status / aria-live, so it is
+         not announced to assistive technology. -->
+    <p id="result"></p>
+  </div>
+
+  <div class="sitefoot">
+    <div class="shell">
+      City Hall, 100 Market Square, Muddville &nbsp;·&nbsp; (555) 018-2200 &nbsp;·&nbsp;
+      <a href="contact.html">Contact</a> &nbsp;·&nbsp;
+      <a href="about.html">About this site</a>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script>
+    // WCAG-FAIL 2.2.1 (A) Timing Adjustable: non-adjustable countdown.
+    (function () {
+      var left = 60, el = document.getElementById("countdown");
+      var t = setInterval(function () {
+        left--; if (el) el.textContent = left;
+        if (left <= 0) {
+          clearInterval(t);
+          var f = document.getElementById("payform");
+          if (f) { Array.prototype.forEach.call(f.elements, function (x){ x.disabled = true; }); }
+          document.getElementById("result").textContent =
+            "Session expired. Reload the page to start over.";
+        }
+      }, 1000);
+    })();
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      var amount = document.getElementById("amount");
+      var name = document.getElementById("name");
+      var ok = true;
+
+      // WCAG-FAIL 3.3.1 (A) Error Identification: errors are shown by turning
+      // the field border red only — no text says which field is in error or
+      // why.
+      // WCAG-FAIL 3.3.3 (AA) Error Suggestion: when known, no suggestion for
+      // fixing the input is offered.
+      [name, amount].forEach(function (field) {
+        if (!field.value) { field.classList.add("has-error"); ok = false; }
+        else { field.classList.remove("has-error"); }
+      });
+
+      var result = document.getElementById("result");
+      if (!ok) {
+        result.textContent = "Invalid."; // no guidance on what to fix or how
+        return false;
+      }
+      // WCAG-FAIL 3.3.4: payment is "processed" immediately, no confirm/undo.
+      result.textContent = "Payment submitted.";
+      return false;
+    }
+  </script>
+</body>
+</html>

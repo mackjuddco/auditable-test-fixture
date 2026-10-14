@@ -1,0 +1,298 @@
+/* =========================================================================
+   City of Muddville — WCAG 2.1 A/AA anti-fixture stylesheet
+   This file deliberately holds the SITE-WIDE accessibility failures so every
+   page inherits them. Each failure is tagged with a WCAG-FAIL comment.
+   See CRITERIA.md for the full map of all 50 criteria.
+   ========================================================================= */
+
+:root {
+  --navy: #1d3f5e;
+  --navy-dark: #15314a;
+  --accent: #2f6fb0;
+  --rule: #e2e6ea;
+}
+
+* { box-sizing: border-box; }
+
+/* WCAG-FAIL 2.4.7 (AA) Focus Visible: focus outline removed site-wide.
+   Keyboard users get no visible focus indicator anywhere. */
+*:focus {
+  outline: none;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  /* WCAG-FAIL 1.4.3 (AA) Contrast (Minimum): body copy is #8a8a8a on #ffffff
+     ~= 3.5:1, below the 4.5:1 required for normal text. */
+  color: #8a8a8a;
+  background: #ffffff;
+  line-height: 1.5;
+}
+
+/* WCAG-FAIL 1.4.10 (AA) Reflow: the whole site is laid out in a fixed
+   1180px shell with no max-width/fluid fallback, so at 320px CSS px it
+   forces two-dimensional (horizontal) scrolling instead of reflowing. */
+.shell {
+  width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- Masthead / nav ---------------------------------------------------- */
+.masthead {
+  background: var(--navy);
+  color: #fff;
+}
+.masthead .shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.brand {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+}
+.topnav ul {
+  list-style: none;
+  display: flex;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+}
+/* WCAG-FAIL 1.4.3 (AA) Contrast: nav links #6f93b4 on navy #1d3f5e ~= 2.4:1. */
+.topnav a {
+  color: #6f93b4;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* ---- Generic content --------------------------------------------------- */
+main { padding: 28px 0 60px; }
+
+h1 { color: var(--navy); font-size: 30px; margin: 18px 0 10px; }
+h2 { color: var(--navy-dark); font-size: 22px; margin: 28px 0 8px; }
+
+/* WCAG-FAIL 1.4.1 (A) Use of Color: in-content links are distinguished from
+   surrounding text by color alone (no underline, no other cue). */
+.content a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* A "fake heading": styled to look like a heading but is a plain <p>.
+   Used for WCAG-FAIL 1.3.1 (Info and Relationships) on services.html. */
+.fakehead {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--navy-dark);
+  margin: 28px 0 8px;
+}
+
+.card {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin: 16px 0;
+  background: #fcfdfe;
+}
+
+/* Buttons ---------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-family: inherit;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+/* WCAG-FAIL 1.4.11 (AA) Non-text Contrast: the "secondary" button is
+   #cfd8e0 on #ffffff (~1.4:1) — its boundary is not perceivable. */
+.btn-secondary {
+  background: #eef2f5;
+  color: #9aa7b2;
+  border: 1px solid #cfd8e0;
+}
+
+/* Forms ------------------------------------------------------------------ */
+/* WCAG-FAIL 1.4.11 (AA) Non-text Contrast: input borders #e9edf0 on white
+   (~1.2:1) give no perceivable boundary. */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+textarea,
+select {
+  border: 1px solid #e9edf0;
+  padding: 8px 10px;
+  font-size: 15px;
+  font-family: inherit;
+  width: 320px;
+  max-width: 100%;
+  background: #fff;
+  color: #333;
+}
+
+/* WCAG-FAIL 1.4.1 (A) Use of Color: required fields are marked only by a red
+   label color — no text, asterisk, or other non-color indication. */
+.req-label { color: #c62828; }
+
+/* WCAG-FAIL 3.3.1 (A) Error Identification: errors are indicated by a red
+   border only, with no accompanying text identifying the error. */
+.has-error {
+  border-color: #c62828 !important;
+}
+
+/* ---- Announcement box: text-spacing clipping --------------------------- */
+/* WCAG-FAIL 1.4.12 (AA) Text Spacing: fixed height + overflow:hidden means
+   content is clipped when users increase line-height / letter/word spacing. */
+.announcement {
+  height: 72px;
+  overflow: hidden;
+  background: #fff8e1;
+  border: 1px solid #ffe0a3;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin: 18px 0;
+  color: #6b5a2b;
+  /* line height forced so overrides collide with the fixed height */
+  line-height: 1.2 !important;
+}
+
+/* ---- Hover-only tooltip ------------------------------------------------ */
+/* WCAG-FAIL 1.4.13 (AA) Content on Hover or Focus: tip shows on hover only
+   (not focus), can't be dismissed without moving the pointer, and the gap
+   between trigger and tip means it vanishes before it can be hovered. */
+.tooltip { position: relative; cursor: help; color: var(--accent); }
+.tooltip .tip {
+  display: none;
+  position: absolute;
+  bottom: 150%;      /* gap between trigger and tip */
+  left: 0;
+  width: 240px;
+  background: var(--navy-dark);
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.tooltip:hover .tip { display: block; }
+
+/* ---- Footer ------------------------------------------------------------ */
+.sitefoot {
+  background: #f3f5f7;
+  border-top: 1px solid var(--rule);
+  margin-top: 40px;
+  padding: 24px 0;
+  /* WCAG-FAIL 1.4.3 (AA) Contrast: footer text #b4bcc4 on #f3f5f7 (~1.7:1). */
+  color: #b4bcc4;
+  font-size: 13px;
+}
+.sitefoot a { color: #aeb9c4; text-decoration: none; }
+
+/* ---- Carousel ---------------------------------------------------------- */
+.carousel { position: relative; overflow: hidden; height: 240px; border-radius: 6px; }
+.carousel .slide {
+  position: absolute; inset: 0;
+  display: none;
+  color: #fff;
+  padding: 40px;
+  font-size: 24px;
+}
+.carousel .slide.active { display: block; }
+.slide-1 { background: #2f6fb0; }
+.slide-2 { background: #3a7d44; }
+.slide-3 { background: #8a5a2b; }
+
+/* WCAG-FAIL 1.3.4 (AA) Orientation: in landscape the main content is
+   rotated/locked, effectively restricting the view to one orientation. */
+@media (orientation: landscape) and (max-width: 900px) {
+  .orientation-lock {
+    display: block;
+    transform: rotate(90deg);
+    transform-origin: center;
+  }
+}
+
+/* ---- Flashing alert (mitigated) ---------------------------------------- */
+/* WCAG-FAIL 2.3.1 (A) Three Flashes or Below Threshold: an element that
+   flashes several times per second. MITIGATION (by request): the flash is
+   confined to a small banner and is gated behind prefers-reduced-motion, so
+   visitors who ask their OS for reduced motion never see it animate. It is
+   documented in CRITERIA.md as the 2.3.1 failure for manual review; it is not
+   an unmitigated full-screen strobe. */
+.flasher {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  background: #c62828;
+  color: #fff;
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .flasher { animation: muddflash 0.3s steps(1, end) infinite; }
+}
+@keyframes muddflash {
+  0%   { background: #c62828; color: #fff; }
+  50%  { background: #fff3cd; color: #c62828; }
+  100% { background: #c62828; color: #fff; }
+}
+
+/* ---- Media ------------------------------------------------------------- */
+.gallery img { width: 180px; height: 120px; object-fit: cover; margin: 6px; border-radius: 4px; }
+video, audio { max-width: 100%; }
+
+/* ---- Masthead search --------------------------------------------------- */
+.search { display: flex; gap: 6px; align-items: center; }
+.search input { width: 160px; }
+
+/* ---- Newsletter modal (keyboard trap) ---------------------------------- */
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 50;
+}
+.modal {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  background: #fff;
+  color: #333;
+  width: 380px; max-width: 90%;
+  padding: 24px;
+  border-radius: 8px;
+}
+.modal h2 { margin-top: 0; }
+
+/* A custom "button" built from a div — styled like the real button so it
+   looks operable but exposes no role/name/state. Used for 4.1.2 / 2.1.1. */
+.divbtn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 18px;
+  font-size: 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Fake checkbox built from a span — no role/state. Used for 4.1.2. */
+.divcheck {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 1px solid #888;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.divcheck.on { background: var(--accent); }

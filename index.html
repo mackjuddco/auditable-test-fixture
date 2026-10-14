@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- WCAG-FAIL 3.1.1 (A) Language of Page: <html> has no lang attribute. (site-wide) -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- WCAG-FAIL 1.4.4 (AA) Resize Text: maximum-scale=1 + user-scalable=no
+       prevents users from zooming text up to 200%. (site-wide) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>City of Muddville — Official Municipal Website</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- WCAG-FAIL 2.4.1 (A) Bypass Blocks: there is no "skip to content" link,
+       and the page is built entirely from <div>s — no <header>/<nav>/<main>/
+       <footer> landmarks and no headings to jump between. (site-wide) -->
+  <div class="masthead">
+    <div class="shell">
+      <div class="brand">City of Muddville</div>
+      <div class="topnav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <!-- WCAG-FAIL 2.4.5 (AA) Multiple Ways: this search box is decorative
+           (it performs no search) and there is no sitemap/A-Z index, so the
+           site nav is the ONLY way to locate pages. The label here is
+           "Search"; note about.html renames the same control "Find It"
+           (see 3.2.4). -->
+      <div class="search">
+        <input type="text" id="sitesearch" placeholder="Search">
+        <span class="divbtn" onclick="return false">Search</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell content">
+
+    <!-- WCAG-FAIL 1.4.5 (AA) Images of Text: the welcome headline is a PNG
+         with the text baked in. Also missing alt (an instance of 1.1.1). -->
+    <img src="assets/welcome-banner.png" width="760" height="160">
+
+    <!-- WCAG-FAIL 1.4.12 (AA) Text Spacing: this notice sits in a fixed-height
+         box with overflow:hidden and a forced line-height, so increasing line
+         or letter spacing clips the text instead of reflowing it. -->
+    <div class="announcement">
+      <strong>Public notice:</strong> City offices close early this Friday for the
+      Founders' Day parade. Residents should move trash and recycling bins to the
+      curb the night before, and check the News page for parade-route street
+      closures affecting Cedar Street and the Main Street corridor downtown.
+    </div>
+
+    <!-- WCAG-FAIL 2.2.2 (A) Pause, Stop, Hide: this carousel auto-advances
+         every 3s with no pause/stop/hide control.
+         WCAG-FAIL 2.5.1 (A) Pointer Gestures: the only manual control is a
+         horizontal swipe (path-based) — no tap/click/button equivalent. -->
+    <div class="carousel" aria-hidden="false">
+      <div class="slide slide-1 active">Spring cleanup week begins April 20</div>
+      <div class="slide slide-2">Mayor's budget town hall — May 3, 7:00 PM</div>
+      <div class="slide slide-3">Water main work on Cedar Street this week</div>
+    </div>
+
+    <h1>Welcome, residents</h1>
+    <p>
+      The City of Muddville provides municipal services to more than 60,000
+      residents. Use this site to pay bills, report problems, and keep up with
+      city news. For the fastest help, <a href="contact.html">contact our
+      offices</a>.
+    </p>
+
+    <h2>Quick actions</h2>
+    <p>
+      <!-- WCAG-FAIL 2.1.1 (A) Keyboard: this control is a <span> with a click
+           handler — it is not focusable and cannot be activated by keyboard.
+           WCAG-FAIL 4.1.2 (A) Name, Role, Value: it exposes no button role
+           and no accessible name to assistive technology. -->
+      <span class="divbtn" onclick="alert('The problem-report form would open here.')">Report a problem</span>
+
+      <!-- WCAG-FAIL 1.1.1 (A) Non-text Content + 4.1.2 (A) Name, Role, Value:
+           icon-only control with no text and no accessible name. -->
+      <span class="divbtn" onclick="alert('Share this page.')">🔗</span>
+
+      <!-- WCAG-FAIL 2.1.2 (A) No Keyboard Trap: opens a dialog that traps
+           keyboard focus (Tab cycles inside it, Esc is ignored; see
+           shared.js). The Close button works with the mouse only. -->
+      <span class="divbtn" data-open-modal>Join our newsletter</span>
+    </p>
+
+    <h2>Departments</h2>
+    <ul>
+      <li><a href="services.html">Utilities &amp; water billing</a></li>
+      <li><a href="services.html">Parks &amp; recreation</a></li>
+      <li><a href="services.html">Permits &amp; licensing</a></li>
+      <li><a href="news.html">Public meetings &amp; media</a></li>
+    </ul>
+
+  </div>
+
+  <!-- Footer as a <div> (no landmark); low-contrast text. -->
+  <div class="sitefoot">
+    <div class="shell">
+      City Hall, 100 Market Square, Muddville &nbsp;·&nbsp; (555) 018-2200 &nbsp;·&nbsp;
+      <a href="contact.html">Contact</a> &nbsp;·&nbsp;
+      <a href="about.html">About this site</a>
+      <br>© 1887–2026 City of Muddville. This is a test fixture, not a real municipality.
+    </div>
+  </div>
+
+  <!-- Newsletter dialog (keyboard trap target) -->
+  <div class="modal-backdrop" data-modal style="display:none">
+    <div class="modal">
+      <h2>Join the Muddville newsletter</h2>
+      <p>Get weekly city updates in your inbox.</p>
+      <input type="text" placeholder="Email address">
+      <p><button class="btn" data-close-modal>Close</button></p>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+</body>
+</html>
