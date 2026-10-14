@@ -44,10 +44,11 @@
          with the text baked in. Also missing alt (an instance of 1.1.1). -->
     <img src="assets/welcome-banner.png" width="760" height="160">
 
-    <!-- WCAG-FAIL 1.4.12 (AA) Text Spacing: this notice sits in a fixed-height
-         box with overflow:hidden and a forced line-height, so increasing line
-         or letter spacing clips the text instead of reflowing it. -->
-    <div class="announcement">
+    <!-- WCAG-FAIL 1.4.12 (AA) Text Spacing: fixed-height box with
+         overflow:hidden, AND the spacing properties are locked with !important
+         in the inline style attribute, so a user's text-spacing overrides are
+         ignored and the text clips. (axe avoid-inline-spacing flags this.) -->
+    <div class="announcement" style="line-height:1 !important; letter-spacing:normal !important; word-spacing:normal !important">
       <strong>Public notice:</strong> City offices close early this Friday for the
       Founders' Day parade. Residents should move trash and recycling bins to the
       curb the night before, and check the News page for parade-route street

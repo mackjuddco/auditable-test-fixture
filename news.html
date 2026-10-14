@@ -68,7 +68,10 @@
     <!-- WCAG-FAIL 1.1.1 (A) Non-text Content: informative images with no alt
          text (and none marked decorative). -->
     <div class="gallery">
-      <img src="assets/welcome-banner.png">
+      <!-- WCAG-FAIL 2.4.4 (A) Link Purpose (+ 1.1.1 + 4.1.2): a linked image
+           with no alt and no accessible name — the link has no discernible
+           purpose. (axe link-name flags it.) -->
+      <a href="news.html"><img src="assets/welcome-banner.png"></a>
       <img src="assets/welcome-banner.png">
       <img src="assets/welcome-banner.png">
     </div>

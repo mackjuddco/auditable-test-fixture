@@ -5,9 +5,10 @@
   <meta charset="utf-8">
   <!-- WCAG-FAIL 1.4.4 (AA) Resize Text: zoom disabled. -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <!-- WCAG-FAIL 2.4.2 (A) Page Titled: the title is non-descriptive; it does
-       not describe the page's topic or purpose. -->
-  <title>Untitled Document</title>
+  <!-- WCAG-FAIL 2.4.2 (A) Page Titled: the page has no title text at all
+       (empty <title>), so the page is not titled. (axe document-title flags
+       an empty/missing title; a merely non-descriptive title it cannot judge.) -->
+  <title></title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -50,6 +51,16 @@
       &nbsp; Permits <span style="color:#3a7d44">●</span>
       &nbsp; Parks office <span style="color:#c62828">●</span>
     </p>
+
+    <!-- WCAG-FAIL 1.3.1 (A) Info and Relationships: a list whose structure is
+         faked with <div>s directly inside <ul> (not <li>), so the list
+         relationship is not conveyed. (axe "list" flags non-li children.) -->
+    <p class="fakehead">Popular online services</p>
+    <ul>
+      <div>Pay a water or sewer bill</div>
+      <div>Apply for a building permit</div>
+      <div>Reserve a park shelter</div>
+    </ul>
 
     <!-- WCAG-FAIL 1.3.1 (A) Info and Relationships: this looks like a heading
          but is a styled <p>, so it is not programmatically a heading. -->

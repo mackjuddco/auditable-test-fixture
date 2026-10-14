@@ -84,10 +84,14 @@ URL.
 
 ## Notes for scanner testing
 
-- Roughly **~28 of 50** criteria are at least partially machine-detectable by
-  `axe-core`; the rest require manual review. The "Axe" column in
-  [CRITERIA.md](CRITERIA.md) flags each as **Yes / Partial / No** so you can
-  assert which your scanner auto-catches versus reports as *Not Evaluated*.
+- **Measured with axe-core 4.14**, this fixture produces **11 criteria failing,
+  2 needs-review, and the rest Not Evaluated** — because axe (and any automated
+  engine) can only test a minority of WCAG; the remaining criteria genuinely
+  fail but require manual review. The "Axe" column in [CRITERIA.md](CRITERIA.md)
+  gives the exact per-criterion status (**fails / review / blind / manual**),
+  including two "blind" criteria (2.4.1, 3.3.2) that axe *falsely passes*. A
+  scanner reporting many more than a couple as "passing" is likely miscounting
+  not-evaluated criteria as passes.
 - Several failures (keyboard trap, autoplay audio, device-motion, single-key
   shortcut) are behavioral and may not surface in a static DOM snapshot — they
   exercise the manual/interactive paths.
