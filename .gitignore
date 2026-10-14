@@ -3,6 +3,3 @@ scenarios.md
 
 # macOS cruft
 .DS_Store
-
-# Local custom-domain file (copy CNAME.example → CNAME and set your domain)
-/CNAME
