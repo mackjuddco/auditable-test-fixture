@@ -1,12 +1,18 @@
-# Criteria manifest — all 50 WCAG 2.1 Level A + AA failures
+# Criteria manifest — 50 WCAG 2.1 Level A + AA criteria (49 failing, 1 fixed)
 
-This fixture intentionally violates **every** WCAG 2.1 Level A and AA success
-criterion (30 Level A + 20 Level AA = 50). Each failing element in the HTML is
-tagged inline with a `<!-- WCAG-FAIL x.x.x -->` comment; this file is the index.
+This fixture intentionally violates 49 of the 50 WCAG 2.1 Level A and AA
+success criteria (30 Level A + 19 Level AA = 49). Each failing element in the
+HTML is tagged inline with a `<!-- WCAG-FAIL x.x.x -->` comment; this file is
+the index.
+
+> **1.4.10 Reflow was fixed on 2026-10-24** (fluid `.shell` + wrapping
+> masthead) to exercise AuditAble's developer-handoff flow end-to-end. It
+> remains in the table below, marked **FIXED**, for the historical record.
 
 ## Important: automated detection only covers a fraction of WCAG
 
-The site genuinely fails all 50 criteria. But **an automated engine (axe-core,
+The site genuinely fails 49 of the 50 criteria (1.4.10 Reflow is fixed — see
+above). But **an automated engine (axe-core,
 which AuditAble's Layer 1 runs) can only detect a minority of WCAG** — most
 criteria require human judgment (does the alt text make sense? is the title
 descriptive? is the reading order logical?) and have no machine test at all.
@@ -55,7 +61,7 @@ pages. Legend:
 | 1.4.3 Contrast (Minimum) | AA | all | body `#8a8a8a`, nav, footer | Text contrast below 4.5:1 | **fails** |
 | 1.4.4 Resize Text | AA | all | viewport `user-scalable=no, maximum-scale=1` | Zoom disabled | **fails** |
 | 1.4.5 Images of Text | AA | index | `assets/welcome-banner.png` | Headline text baked into an image | manual |
-| 1.4.10 Reflow | AA | all | `.shell { width:1180px }` | Fixed-width forces horizontal scroll at 320px (axe has no reflow rule) | manual |
+| 1.4.10 Reflow | AA | all | `.shell { max-width:1180px }` | **FIXED 2026-10-24** — shell is now fluid and the masthead row wraps instead of forcing horizontal scroll at 320px (axe has no reflow rule, so this never showed as a scanner "fail") | n/a (fixed) |
 | 1.4.11 Non-text Contrast | AA | all (forms), index | input borders, `.btn-secondary` | UI boundaries below 3:1 (axe has no non-text-contrast rule) | manual |
 | 1.4.12 Text Spacing | AA | index | `.announcement` inline `!important` spacing | Spacing locked with inline `!important` (axe `avoid-inline-spacing`) | **fails** |
 | 1.4.13 Content on Hover or Focus | AA | services | `.tooltip` | Hover-only, not dismissable, disappears on approach | manual |

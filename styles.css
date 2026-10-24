@@ -30,11 +30,12 @@ body {
   line-height: 1.5;
 }
 
-/* WCAG-FAIL 1.4.10 (AA) Reflow: the whole site is laid out in a fixed
-   1180px shell with no max-width/fluid fallback, so at 320px CSS px it
-   forces two-dimensional (horizontal) scrolling instead of reflowing. */
+/* Fix for auditable-reflow-320 / WCAG 1.4.10 (AA) Reflow: fluid max-width
+   instead of a fixed width so content reflows down to 320px CSS px without
+   two-dimensional scrolling. */
 .shell {
-  width: 1180px;
+  max-width: 1180px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -46,6 +47,7 @@ body {
 }
 .masthead .shell {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding-top: 14px;
@@ -60,10 +62,24 @@ body {
 .topnav ul {
   list-style: none;
   display: flex;
-  gap: 22px;
+  flex-wrap: wrap;
+  gap: 10px 22px;
   margin: 0;
   padding: 0;
 }
+
+/* Part of the auditable-reflow-320 fix: let the masthead row wrap instead of
+   forcing a single unbroken line that would force horizontal scrolling. */
+@media (max-width: 700px) {
+  .search {
+    width: 100%;
+  }
+  .search input {
+    flex: 1 1 auto;
+    width: auto;
+  }
+}
+
 /* WCAG-FAIL 1.4.3 (AA) Contrast: nav links #6f93b4 on navy #1d3f5e ~= 2.4:1. */
 .topnav a {
   color: #6f93b4;
