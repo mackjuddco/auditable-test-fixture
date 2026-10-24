@@ -1,18 +1,22 @@
-# Criteria manifest — 50 WCAG 2.1 Level A + AA criteria (49 failing, 1 fixed)
+# Criteria manifest — 50 WCAG 2.1 Level A + AA criteria (48 failing, 2 fixed)
 
-This fixture intentionally violates 49 of the 50 WCAG 2.1 Level A and AA
-success criteria (30 Level A + 19 Level AA = 49). Each failing element in the
+This fixture intentionally violates 48 of the 50 WCAG 2.1 Level A and AA
+success criteria (29 Level A + 19 Level AA = 48). Each failing element in the
 HTML is tagged inline with a `<!-- WCAG-FAIL x.x.x -->` comment; this file is
 the index.
 
-> **1.4.10 Reflow was fixed on 2026-10-24** (fluid `.shell` + wrapping
-> masthead) to exercise AuditAble's developer-handoff flow end-to-end. It
-> remains in the table below, marked **FIXED**, for the historical record.
+> **Fixed on 2026-10-24**, to exercise AuditAble's developer-handoff flow
+> end-to-end:
+> - **1.4.10 Reflow** — fluid `.shell` + wrapping masthead.
+> - **3.3.2 Labels or Instructions** — every `<input>`/`<select>`/`<textarea>`
+>   now has an associated `<label>`.
+>
+> Both remain in the table below, marked **FIXED**, for the historical record.
 
 ## Important: automated detection only covers a fraction of WCAG
 
-The site genuinely fails 49 of the 50 criteria (1.4.10 Reflow is fixed — see
-above). But **an automated engine (axe-core,
+The site genuinely fails 48 of the 50 criteria (1.4.10 Reflow and 3.3.2
+Labels or Instructions are fixed — see above). But **an automated engine (axe-core,
 which AuditAble's Layer 1 runs) can only detect a minority of WCAG** — most
 criteria require human judgment (does the alt text make sense? is the title
 descriptive? is the reading order logical?) and have no machine test at all.
@@ -99,7 +103,7 @@ pages. Legend:
 | 3.2.3 Consistent Navigation | AA | about vs. others | `.topnav` order | Nav reordered on about.html | manual |
 | 3.2.4 Consistent Identification | AA | about vs. others | search label | "Find It" here vs "Search" elsewhere | manual |
 | 3.3.1 Error Identification | A | contact | `.has-error` | Errors shown by red border only | manual |
-| 3.3.2 Labels or Instructions | A | contact | all inputs | No labels/instructions — real failure shows under **4.1.2**; axe's only 3.3.2 rule (`form-field-multiple-labels`) can't express "missing label", so it passes | **blind** |
+| 3.3.2 Labels or Instructions | A | contact | all inputs | **FIXED 2026-10-24** — every input/select/textarea site-wide now has an associated `<label>` (axe's only 3.3.2 rule, `form-field-multiple-labels`, never caught the original failure anyway) | n/a (fixed) |
 | 3.3.3 Error Suggestion | AA | contact | `#result` "Invalid." | No correction suggestion | manual |
 | 3.3.4 Error Prevention (Legal, Financial, Data) | AA | contact | pay-bill submit | Financial submit with no review/confirm/undo | manual |
 

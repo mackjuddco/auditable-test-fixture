@@ -32,6 +32,7 @@
            "Search"; note about.html renames the same control "Find It"
            (see 3.2.4). -->
       <div class="search">
+        <label for="sitesearch" class="visually-hidden">Search</label>
         <input type="text" id="sitesearch" placeholder="Search">
         <span class="divbtn" onclick="return false">Search</span>
       </div>
@@ -116,7 +117,8 @@
     <div class="modal">
       <h2>Join the Muddville newsletter</h2>
       <p>Get weekly city updates in your inbox.</p>
-      <input type="text" placeholder="Email address">
+      <label for="newsletter-email">Email address</label>
+      <input type="text" id="newsletter-email" placeholder="Email address">
       <p><button class="btn" data-close-modal>Close</button></p>
     </div>
   </div>

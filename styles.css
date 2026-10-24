@@ -14,6 +14,20 @@
 
 * { box-sizing: border-box; }
 
+/* Visually hides text while keeping it in the accessibility tree — used for
+   <label>s next to controls that already have an adjacent visible cue. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* WCAG-FAIL 2.4.7 (AA) Focus Visible: focus outline removed site-wide.
    Keyboard users get no visible focus indicator anywhere. */
 *:focus {

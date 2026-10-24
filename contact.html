@@ -23,6 +23,7 @@
         </ul>
       </div>
       <div class="search">
+        <label for="sitesearch" class="visually-hidden">Search</label>
         <input type="text" id="sitesearch" placeholder="Search">
         <span class="divbtn" onclick="return false">Search</span>
       </div>
@@ -57,11 +58,11 @@
            WCAG-FAIL 2.4.3 (A) Focus Order: tabindex values put the tab order
            out of the logical reading sequence (3, 1, 4, 2, 5…). -->
       <p>
-        <span class="req-label">Full name</span><br>
+        <label for="name" class="req-label">Full name</label><br>
         <input type="text" id="name" autocomplete="full-name-here" tabindex="3">
       </p>
       <p>
-        <span class="req-label">Email</span><br>
+        <label for="email" class="req-label">Email</label><br>
         <input type="email" id="email" tabindex="1">
       </p>
       <p>
@@ -69,11 +70,11 @@
         <input type="tel" id="phone" tabindex="4">
       </p>
       <p>
-        <span class="req-label">Water account number</span><br>
+        <label for="account" class="req-label">Water account number</label><br>
         <input type="text" id="account" tabindex="2">
       </p>
       <p>
-        <span class="req-label">Amount (USD)</span><br>
+        <label for="amount" class="req-label">Amount (USD)</label><br>
         <input type="number" id="amount" tabindex="5">
       </p>
 
@@ -83,7 +84,7 @@
            navigates to another page without the user initiating it or being
            warned. -->
       <p>
-        Reason for contact<br>
+        <label for="topic">Reason for contact</label><br>
         <select id="topic"
                 onfocus="alert('Note: billing questions are handled by a different office.')"
                 onchange="if(this.value==='permits'){ window.location='services.html'; }">
@@ -95,7 +96,7 @@
       </p>
 
       <p>
-        Message<br>
+        <label for="message">Message</label><br>
         <textarea id="message" rows="4"></textarea>
       </p>
 

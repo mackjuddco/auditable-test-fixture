@@ -26,6 +26,7 @@
         </ul>
       </div>
       <div class="search">
+        <label for="sitesearch" class="visually-hidden">Search</label>
         <input type="text" id="sitesearch" placeholder="Search">
         <span class="divbtn" onclick="return false">Search</span>
       </div>
@@ -138,6 +139,7 @@
       <!-- WCAG-FAIL 1.3.4 (AA) Orientation: content is locked/rotated in
            landscape on small screens. -->
       <p class="fakehead">Filter services</p>
+      <label for="svcfilter" class="visually-hidden">Filter services</label>
       <select id="svcfilter" onchange="document.getElementById('svccount').textContent='Showing ' + (this.value||'all') + ' services';">
         <option value="">All</option>
         <option value="billing">Billing</option>
