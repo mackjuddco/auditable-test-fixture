@@ -66,7 +66,7 @@
     function focusables() {
       return Array.prototype.slice.call(
         modal.querySelectorAll('a[href],button,input,select,textarea,[tabindex]')
-      ).filter(function (el) { return !el.disabled; });
+      ).filter(function (el) { return !el.disabled && !el.hasAttribute("data-close-modal"); });
     }
     function open() {
       modal.style.display = "block";
