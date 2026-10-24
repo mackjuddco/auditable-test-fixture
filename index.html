@@ -32,7 +32,6 @@
            "Search"; note about.html renames the same control "Find It"
            (see 3.2.4). -->
       <div class="search">
-        <label for="sitesearch" class="visually-hidden">Search</label>
         <input type="text" id="sitesearch" placeholder="Search">
         <span class="divbtn" onclick="return false">Search</span>
       </div>
@@ -43,7 +42,7 @@
 
     <!-- WCAG-FAIL 1.4.5 (AA) Images of Text: the welcome headline is a PNG
          with the text baked in. Also missing alt (an instance of 1.1.1). -->
-    <img src="assets/welcome-banner.png" width="760" height="160" alt="Mayor John Doe at the town hall ribbon-cutting">
+    <img src="assets/welcome-banner.png" width="760" height="160">
 
     <!-- WCAG-FAIL 1.4.12 (AA) Text Spacing: fixed-height box with
          overflow:hidden, AND the spacing properties are locked with !important
@@ -117,8 +116,7 @@
     <div class="modal">
       <h2>Join the Muddville newsletter</h2>
       <p>Get weekly city updates in your inbox.</p>
-      <label for="newsletter-email">Email address</label>
-      <input type="text" id="newsletter-email" placeholder="Email address">
+      <input type="text" placeholder="Email address">
       <p><button class="btn" data-close-modal>Close</button></p>
     </div>
   </div>

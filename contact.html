@@ -23,7 +23,6 @@
         </ul>
       </div>
       <div class="search">
-        <label for="sitesearch" class="visually-hidden">Search</label>
         <input type="text" id="sitesearch" placeholder="Search">
         <span class="divbtn" onclick="return false">Search</span>
       </div>
@@ -58,23 +57,23 @@
            WCAG-FAIL 2.4.3 (A) Focus Order: tabindex values put the tab order
            out of the logical reading sequence (3, 1, 4, 2, 5…). -->
       <p>
-        <label for="name" class="req-label">Full name</label><br>
+        <span class="req-label">Full name</span><br>
         <input type="text" id="name" autocomplete="full-name-here" tabindex="3">
       </p>
       <p>
-        <label for="email" class="req-label">Email</label><br>
+        <span class="req-label">Email</span><br>
         <input type="email" id="email" tabindex="1">
       </p>
       <p>
-        <label for="phone">Phone number</label><br>
+        Phone<br>
         <input type="tel" id="phone" tabindex="4">
       </p>
       <p>
-        <label for="account" class="req-label">Water account number</label><br>
+        <span class="req-label">Water account number</span><br>
         <input type="text" id="account" tabindex="2">
       </p>
       <p>
-        <label for="amount" class="req-label">Amount (USD)</label><br>
+        <span class="req-label">Amount (USD)</span><br>
         <input type="number" id="amount" tabindex="5">
       </p>
 
@@ -84,7 +83,7 @@
            navigates to another page without the user initiating it or being
            warned. -->
       <p>
-        <label for="topic">Reason for contact</label><br>
+        Reason for contact<br>
         <select id="topic"
                 onfocus="alert('Note: billing questions are handled by a different office.')"
                 onchange="if(this.value==='permits'){ window.location='services.html'; }">
@@ -96,7 +95,7 @@
       </p>
 
       <p>
-        <label for="message">Message</label><br>
+        Message<br>
         <textarea id="message" rows="4"></textarea>
       </p>
 

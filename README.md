@@ -2,10 +2,8 @@
 
 A small, deliberately-inaccessible static website for testing accessibility
 scanners (built as a fixture for **AuditAble**). It is a fictional municipal
-site that **fails 48 of the 50 WCAG 2.1 Level A + AA success criteria**
-(29 Level A + 19 Level AA). Two criteria, **1.4.10 Reflow** and **3.3.2
-Labels or Instructions**, were fixed 2026-10-24 to exercise AuditAble's
-developer-handoff flow end-to-end — see [CRITERIA.md](CRITERIA.md).
+site that **fails every one of the 50 WCAG 2.1 Level A + AA success criteria**
+(30 Level A + 20 Level AA).
 
 > ⚠️ This is a test fixture. "City of Muddville" is not a real municipality.
 > Do not use it for any real purpose.
