@@ -42,7 +42,7 @@
 
     <!-- WCAG-FAIL 1.4.5 (AA) Images of Text: the welcome headline is a PNG
          with the text baked in. Also missing alt (an instance of 1.1.1). -->
-    <img alt="Short description of the image purpose" src="assets/welcome-banner.png" width="760" height="160"> 
+    <img alt="Welcome to the City of Muddville" src="assets/welcome-banner.png" width="760" height="160"> 
     <!-- WCAG-FAIL 1.4.12 (AA) Text Spacing: fixed-height box with
          overflow:hidden, AND the spacing properties are locked with !important
          in the inline style attribute, so a user's text-spacing overrides are
@@ -82,7 +82,7 @@
 
       <!-- WCAG-FAIL 1.1.1 (A) Non-text Content + 4.1.2 (A) Name, Role, Value:
            icon-only control with no text and no accessible name. -->
-      <span class="divbtn" onclick="alert('Share this page.')">🔗</span>
+      <span class="divbtn" onclick="alert('Share this page.')" aria-label="Share this page">🔗</span>
 
       <!-- WCAG-FAIL 2.1.2 (A) No Keyboard Trap: opens a dialog that traps
            keyboard focus (Tab cycles inside it, Esc is ignored; see
